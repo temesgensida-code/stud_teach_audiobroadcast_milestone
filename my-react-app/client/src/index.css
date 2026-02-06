@@ -1,0 +1,45 @@
+/* client/src/index.css */
+:root {
+  --lk-bg: #15202b; /* Twitter-dark blue */
+  --lk-accent-bg: #1d9bf0; /* Twitter blue */
+}
+
+/* Make the grid look like a social audio space */
+.lk-grid-layout {
+  background-color: var(--lk-bg);
+  padding: 2rem;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+}
+
+/* Turn participant boxes into rounded avatars */
+.lk-participant-tile {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+  background: #273340;
+}
+
+/* Glow effect for the person currently talking */
+.lk-participant-tile[data-lk-speaking="true"] {
+  border-color: var(--lk-accent-bg);
+  box-shadow: 0 0 15px var(--lk-accent-bg);
+  transform: scale(1.05);
+}
+
+/* Hide video elements since this is audio-only */
+.lk-participant-media-video {
+  display: none !important;
+}
+
+/* Style for the participant names below the bubbles */
+.lk-participant-name {
+  bottom: -25px !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  background: transparent !important;
+  font-size: 0.8rem;
+  color: white;
+}
