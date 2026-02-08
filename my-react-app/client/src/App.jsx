@@ -9,7 +9,7 @@ import '@livekit/components-styles';
 
 const WS_URL = import.meta.env.VITE_LIVEKIT_URL;
 
-// --- MINIMAL INTERNAL CSS ---
+
 const MinimalCSS = () => (
   <style>{`
     body { margin: 0; background: #15202b; color: white; font-family: sans-serif; }
@@ -36,7 +36,7 @@ function LoginView({ onToken }) {
   const [name, setName] = useState("");
   const handleJoin = async () => {
     try {
-      const resp = await fetch('http://localhost:3001/get-token', {
+      const resp = await fetch(import.meta.env.VITE_SERVER_URL + '/get-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roomName: "main-room", participantName: name }),
