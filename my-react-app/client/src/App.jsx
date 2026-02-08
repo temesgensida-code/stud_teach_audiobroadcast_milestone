@@ -34,16 +34,24 @@ const MinimalCSS = () => (
 
 function LoginView({ onToken }) {
   const [name, setName] = useState("");
-  const handleJoin = async () => {
+const handleJoin = async () => {
+   
+  
+    const BASE_URL = import.meta.env.VITE_SERVER_URL || 'https://stud-teach-audiobroadcast-milestone.onrender.com';
+
     try {
-      const resp = await fetch(import.meta.env.VITE_SERVER_URL + '/get-token', {
+      // 2. Use that BASE_URL here
+      const resp = await fetch(`${BASE_URL}/get-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roomName: "main-room", participantName: name }),
       });
       const data = await resp.json();
       onToken(data.token);
-    } catch (e) { alert("Start your server first!"); }
+    } catch (e) { 
+      console.error(e); 
+      alert("Connection failed. Check if the server is awake!"); 
+    }
   };
 
   return (
